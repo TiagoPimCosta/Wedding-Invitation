@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Great_Vibes, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 const greatVibes = Great_Vibes({
   variable: "--font-great-vibes",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${greatVibes.variable} ${cormorantGaramond.variable} antialiased`}
       >
+        <BackgroundMusic src="/background-music.mp3" volume={0.3} />
         {children}
       </body>
     </html>
