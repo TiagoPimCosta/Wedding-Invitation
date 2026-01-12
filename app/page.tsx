@@ -1,3 +1,4 @@
+import CountdownSection from "@/components/CountdownSection";
 import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <>
       <div className="min-h-screen bg-[#FCF9ED]">
         <HeroSection />
+        <CountdownSection />
       </div>
     </>
   );

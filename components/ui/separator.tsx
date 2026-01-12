@@ -24,10 +24,11 @@ function Separator({
         decorative={decorative}
         orientation={orientation}
         className={cn(
-          "shrink-0 flex-1",
-          orientation === "vertical" ? "w-px" : "h-px"
+          "shrink-0 flex-1 from-transparent to-[#c4a35a]",
+          orientation === "vertical"
+            ? "w-px bg-linear-to-b"
+            : "h-px bg-linear-to-r"
         )}
-        style={{ backgroundColor: "#8d8b62" }}
         {...props}
       />
       <span
@@ -41,7 +42,7 @@ function Separator({
           height="24"
           fill="none"
           viewBox="0 0 24 24"
-          style={{ color: "#8d8b62" }}
+          style={{ color: "#c4a35a" }}
         >
           <circle
             cx="12"
@@ -58,10 +59,11 @@ function Separator({
         decorative={decorative}
         orientation={orientation}
         className={cn(
-          "shrink-0 flex-1",
-          orientation === "vertical" ? "w-px" : "h-px"
+          "shrink-0 flex-1 from-transparent to-[#c4a35a]",
+          orientation === "vertical"
+            ? "w-px bg-linear-to-t"
+            : "h-px bg-linear-to-l"
         )}
-        style={{ backgroundColor: "#8d8b62" }}
         {...props}
       />
     </div>
