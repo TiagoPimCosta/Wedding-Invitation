@@ -34,7 +34,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
   return (
     <section
       className={cn(
-        "py-20 relative overflow-hidden",
+        "pt-18 pb-12 relative overflow-hidden",
         "flex flex-col items-center gap-12",
         sectionClassname,
       )}
