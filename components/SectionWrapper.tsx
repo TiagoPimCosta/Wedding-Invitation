@@ -2,32 +2,81 @@ import { cn } from "@/lib/utils";
 
 interface SectionWrapperProps {
   children: React.ReactNode;
+  headerClassname?: string;
+  bodyClassname?: string;
+  sectionClassname?: string;
+  overline?: string;
+  overlineClassname?: string;
   title: string;
   titleClassname?: string;
   subTitle?: string;
   subTitleClassname?: string;
+  footer?: string;
+  footerClassname?: string;
 }
 
 const SectionWrapper = (props: SectionWrapperProps) => {
-  const { children, title, titleClassname, subTitle, subTitleClassname } =
-    props;
+  const {
+    children,
+    sectionClassname,
+    headerClassname,
+    bodyClassname,
+    overline,
+    overlineClassname,
+    title,
+    titleClassname,
+    subTitle,
+    subTitleClassname,
+    footer,
+    footerClassname,
+  } = props;
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
-      <div className="text-center mb-12">
-        <h2
-          className={cn(
-            "font-display text-4xl md:text-5xl text-gold mb-4",
-            titleClassname
-          )}
-        >
-          {title}
-        </h2>
-        <p className={cn("text-cream/80 text-lg", subTitleClassname)}>
-          {subTitle}
-        </p>
+    <section
+      className={cn(
+        "py-20 relative overflow-hidden",
+        "flex flex-col items-center gap-12",
+        sectionClassname,
+      )}
+    >
+      <header
+        className={cn(
+          "flex flex-col gap-4 text-center font-cormorant-garamond",
+          headerClassname,
+        )}
+      >
+        {overline && (
+          <p className={cn("text-sm", overlineClassname)}>{overline}</p>
+        )}
+        {title && (
+          <p
+            className={cn(
+              "font-great-vibes text-4xl md:text-5xl text-gold",
+              "text-5xl md:text-5xl",
+              titleClassname,
+            )}
+          >
+            {title}
+          </p>
+        )}
+        {subTitle && (
+          <p
+            className={cn("text-lg font-cormorant-garamond", subTitleClassname)}
+          >
+            {subTitle}
+          </p>
+        )}
+      </header>
+      <div className={cn("max-w-xs md:max-w-3xl w-full", bodyClassname)}>
+        {children}
       </div>
-      {children}
+      <footer className={cn("flex flex-col gap-4 text-center")}>
+        {footer && (
+          <p className={cn("text-lg font-cormorant-garamond", footerClassname)}>
+            {footer}
+          </p>
+        )}
+      </footer>
     </section>
   );
 };
