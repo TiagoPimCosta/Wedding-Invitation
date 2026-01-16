@@ -1,6 +1,7 @@
 import CountdownSection from "@/components/CountdownSection";
 import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
+import VideoSection from "@/components/VideoSection";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         <HeroSection />
         <CountdownSection />
         <FAQSection />
+        <VideoSection />
       </div>
     </>
   );
