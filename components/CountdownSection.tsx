@@ -48,8 +48,6 @@ const CountdownSection = () => {
       overlineClassname="text-[#c4a35a] tracking-[0.3em] uppercase font-light"
       title="Falta Pouco Para o Grande Dia"
       titleClassname="text-[#f5e6d3]"
-      subTitle="✨ 10 de Outubro de 2025 ✨"
-      subTitleClassname="text-[#c4a35a]"
     >
       {/* Countdown Grid */}
       <div

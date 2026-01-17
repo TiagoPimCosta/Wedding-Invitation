@@ -46,13 +46,15 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         )}
       >
         {overline && (
-          <p className={cn("text-sm", overlineClassname)}>{overline}</p>
+          <p className={cn("text-sm md:text-base", overlineClassname)}>
+            {overline}
+          </p>
         )}
         {title && (
           <p
             className={cn(
-              "font-great-vibes text-4xl md:text-5xl text-gold",
-              "text-5xl md:text-5xl",
+              "font-great-vibes text-gold",
+              "text-3xl md:text-5xl",
               titleClassname,
             )}
           >
@@ -61,7 +63,11 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         )}
         {subTitle && (
           <p
-            className={cn("text-lg font-cormorant-garamond", subTitleClassname)}
+            className={cn(
+              "text-base md:text-lg",
+              "font-cormorant-garamond",
+              subTitleClassname,
+            )}
           >
             {subTitle}
           </p>
