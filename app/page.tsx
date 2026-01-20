@@ -1,7 +1,9 @@
+import BackgroundMusic from "@/components/BackgroundMusic";
 import CountdownSection from "@/components/CountdownSection";
 import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
 import VideoSection from "@/components/VideoSection";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -10,7 +12,10 @@ export default function Home() {
         <HeroSection />
         <CountdownSection />
         <FAQSection />
-        <VideoSection />
+        <Suspense>
+          <VideoSection />
+        </Suspense>
+        <BackgroundMusic src="/background-music.mp3" volume={0.3} />
       </div>
     </>
   );
