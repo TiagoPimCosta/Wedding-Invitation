@@ -1,28 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Music, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 interface BackgroundMusicProps {
   src: string;
   volume?: number; // 0.0 to 1.0
 }
 
-const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
+const BackgroundMusic = (props: BackgroundMusicProps) => {
+  const { src, volume = 0.5 } = props;
+
   const audioRef = useRef<HTMLAudioElement>(null);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVolume, setCurrentVolume] = useState(volume);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Initialize volume separately and ensure audio loads
+  // Initialize volume and load audio
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
     audio.volume = volume;
-    // Force audio to load metadata
     audio.load();
   }, [volume, src]);
 
@@ -30,103 +34,54 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Function to update duration if available
     const updateDuration = () => {
-      if (
-        audio.duration &&
-        !isNaN(audio.duration) &&
-        isFinite(audio.duration)
-      ) {
+      if (isFinite(audio.duration)) {
         setDuration(audio.duration);
       }
     };
 
-    // Update duration when metadata is loaded
-    const handleLoadedMetadata = () => {
-      updateDuration();
-    };
-
-    // Also try to get duration on other load events
-    const handleLoadedData = () => {
-      updateDuration();
-    };
-
-    const handleCanPlay = () => {
-      updateDuration();
-    };
-
-    // Update current time
     const handleTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
-      // Also check duration in case it wasn't available earlier
-      if (
-        audio.duration &&
-        !isNaN(audio.duration) &&
-        isFinite(audio.duration)
-      ) {
-        updateDuration();
-      }
+      updateDuration();
     };
 
-    // Handle play/pause state
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
 
-    // Handle ended event (for looping)
     const handleEnded = () => {
       audio.currentTime = 0;
       audio.play();
     };
 
-    // Check if duration is already available
-    if (audio.readyState >= 1) {
-      updateDuration();
-    }
+    if (audio.readyState >= 1) updateDuration();
 
-    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-    audio.addEventListener("loadeddata", handleLoadedData);
-    audio.addEventListener("canplay", handleCanPlay);
+    audio.addEventListener("loadedmetadata", updateDuration);
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
     audio.addEventListener("ended", handleEnded);
 
-    // Try to play on mount, but handle autoplay restrictions
     const playPromise = audio.play();
-
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          // Autoplay was prevented - this is normal in most browsers
-          console.log("Autoplay prevented. User interaction required.");
-        });
+    if (playPromise) {
+      playPromise.catch(() =>
+        console.log("Autoplay prevented. User interaction required."),
+      );
     }
 
     return () => {
-      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      audio.removeEventListener("loadeddata", handleLoadedData);
-      audio.removeEventListener("canplay", handleCanPlay);
+      audio.removeEventListener("loadedmetadata", updateDuration);
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [volume]);
+  }, []);
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (audio.paused) {
-      audio.play().catch(() => {
-        console.log("Could not play audio");
-      });
-    } else {
-      audio.pause();
-    }
+    audio.paused ? audio.play() : audio.pause();
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,9 +108,8 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
     if (!audio) return;
 
     if (isMuted) {
-      audio.volume = currentVolume > 0 ? currentVolume : 0.5;
+      audio.volume = currentVolume > 0 ? currentVolume : 0.2;
       setIsMuted(false);
-      setCurrentVolume(audio.volume);
     } else {
       audio.volume = 0;
       setIsMuted(true);
@@ -164,34 +118,40 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
 
   const formatTime = (time: number) => {
     if (isNaN(time)) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+    const min = Math.floor(time / 60);
+    const sec = Math.floor(time % 60);
+    return `${min}:${sec.toString().padStart(2, "0")}`;
   };
 
   return (
     <>
-      <audio
-        ref={audioRef}
-        src={src}
-        loop
-        preload="auto"
-        className="hidden"
-        aria-label="Background music"
-      />
+      <audio ref={audioRef} src={src} loop preload="auto" />
 
-      {/* Music Player UI */}
-      <div className="fixed bottom-4 right-4 z-50 w-80 sm:w-96 bg-transparent dark:bg-gray-900/95 backdrop-blur-xs rounded-lg shadow-lg border border-border p-4">
-        <div className="space-y-3">
-          {/* Play/Pause and Time Controls */}
-          <div className="flex items-center gap-3">
-            <Button
-              onClick={togglePlayPause}
-              variant="outline"
-              size="icon"
-              className="shrink-0"
-              aria-label={isPlaying ? "Pause" : "Play"}
-            >
+      {/* Mini toggle when hidden */}
+      {!isVisible && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={() => setIsVisible(true)}
+            aria-label="Show music player"
+          >
+            <Music className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
+
+      {/* Full Player */}
+      {isVisible && (
+        <div
+          className={cn(
+            "fixed bottom-4 right-4 z-50 w-80 sm:w-96 bg-white dark:bg-gray-900/95 backdrop-blur-xs rounded-lg shadow-lg p-4",
+            "flex flex-col gap-4",
+          )}
+        >
+          {/* Playback */}
+          <div className="flex items-center gap-2">
+            <Button size="icon-sm" variant="ghost" onClick={togglePlayPause}>
               {isPlaying ? (
                 <Pause className="h-4 w-4" />
               ) : (
@@ -199,8 +159,7 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
               )}
             </Button>
 
-            {/* Time Slider */}
-            <div className="flex-1 space-y-1">
+            <div className="flex-1 gap-1">
               <input
                 type="range"
                 min="0"
@@ -208,7 +167,7 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
                 value={currentTime}
                 onChange={handleTimeChange}
                 className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary
-                border border-[#8d8b62]"
+                  border border-[#8d8b62]"
                 style={{
                   background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${
                     (currentTime / duration) * 100
@@ -223,23 +182,27 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
                 <span>{formatTime(duration)}</span>
               </div>
             </div>
+
+            <Button
+              size="icon-sm"
+              variant="ghost"
+              onClick={() => setIsVisible(false)}
+              aria-label="Hide player"
+            >
+              <X />
+            </Button>
           </div>
 
-          {/* Volume Control */}
+          {/* Volume */}
           <div className="flex items-center gap-2">
-            <Button
-              onClick={toggleMute}
-              variant="ghost"
-              size="icon-sm"
-              className="shrink-0"
-              aria-label={isMuted ? "Unmute" : "Mute"}
-            >
+            <Button size="icon-sm" variant="ghost" onClick={toggleMute}>
               {isMuted || currentVolume === 0 ? (
                 <VolumeX className="h-4 w-4" />
               ) : (
                 <Volume2 className="h-4 w-4" />
               )}
             </Button>
+
             <input
               type="range"
               min="0"
@@ -256,12 +219,13 @@ const BackgroundMusic = ({ src, volume = 0.5 }: BackgroundMusicProps) => {
                 }%, hsl(var(--muted)) 100%)`,
               }}
             />
-            <span className="text-xs text-muted-foreground w-10 text-right">
+
+            <span className="w-10 text-xs text-right text-muted-foreground">
               {Math.round((isMuted ? 0 : currentVolume) * 100)}%
             </span>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
