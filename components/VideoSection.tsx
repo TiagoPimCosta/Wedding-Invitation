@@ -5,21 +5,18 @@ import { useMemo } from "react";
 import SectionWrapper from "./SectionWrapper";
 
 const VIDEO_MAP: Record<string, string> = {
+  default: "/videos/default.mp4",
   test1: "/videos/test1.mp4",
   test2: "/videos/test2.mp4",
 };
 
 const VideoSection = () => {
   const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const token = searchParams.get("token") || "default";
 
   const videoSrc = useMemo(() => {
-    if (!token) return null;
-    return VIDEO_MAP[token] ?? null;
+    return VIDEO_MAP[token];
   }, [token]);
-
-  if (!token) return <p>Missing token</p>;
-  if (!videoSrc) return <p>Invalid token</p>;
 
   return (
     <SectionWrapper title="Um pequeno video">
