@@ -10,10 +10,7 @@ function Timeline(props: TimelineProps) {
 
   return (
     <div className="relative w-fit">
-      {/* Central line */}
-      <div className="absolute top-1/2 -translate-y-1/2 translate-x-7 w-0.5 h-[80%] bg-gray-300 rounded-full" />
-
-      {/* Events */}
+      <div className="absolute left-7 inset-y-8 bg-gray-300 w-0.5 rounded-full" />
       <div className="flex flex-col gap-8 md:gap-12">
         {items.map((event, index) => (
           <TimelineItem

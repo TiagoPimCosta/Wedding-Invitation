@@ -1,5 +1,5 @@
 import { Church, Music, Camera } from "lucide-react";
-import { Timeline, TimelineItem } from "./ui/timeline";
+import { Timeline } from "./ui/timeline";
 import SectionWrapper from "./SectionWrapper";
 
 const timelineEvents = [
@@ -32,7 +32,6 @@ const TimelineSection = () => {
       sectionClassname="bg-white"
     >
       <div className="max-w-4xl mx-auto flex justify-center relative">
-        {/* Timeline */}
         <Timeline items={timelineEvents} />
       </div>
     </SectionWrapper>
