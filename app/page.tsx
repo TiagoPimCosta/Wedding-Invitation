@@ -9,7 +9,7 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen bg-[#FCF9ED]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <HeroSection />
         <CountdownSection />
         <FAQSection />

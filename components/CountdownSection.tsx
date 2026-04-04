@@ -43,11 +43,11 @@ const CountdownSection = () => {
 
   return (
     <SectionWrapper
-      sectionClassname="bg-linear-to-b from-[#1a0f0f] via-[#2d1810] to-[#1a0f0f]"
+      sectionClassname="bg-linear-to-b from-[#2d0810] via-crimson to-[#2d0810]"
       overline="A contagem regressiva"
-      overlineClassname="text-[#c4a35a] tracking-[0.3em] uppercase font-light"
+      overlineClassname="text-gold tracking-[0.3em] uppercase font-light"
       title="Falta Pouco Para o Grande Dia"
-      titleClassname="text-[#f5e6d3]"
+      titleClassname="text-cream"
     >
       {/* Countdown Grid */}
       <div
@@ -68,32 +68,32 @@ const CountdownSection = () => {
             {/* Card */}
             <div className="relative w-24 h-28 md:w-32 md:h-36 rounded-2xl overflow-hidden">
               {/* Glowing border */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-[#c4a35a] via-[#8b0000] to-[#c4a35a] p-0.5">
-                <div className="absolute inset-0.5 rounded-2xl bg-linear-to-br from-[#2d1810] to-[#1a0f0f] backdrop-blur-xl" />
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-gold via-crimson to-gold p-0.5">
+                <div className="absolute inset-0.5 rounded-2xl bg-linear-to-br from-crimson to-[#2d0810] backdrop-blur-xl" />
               </div>
 
               {/* Content */}
               <div className="relative z-10 h-full flex flex-col items-center justify-center">
                 {/* Number */}
-                <span className="text-4xl md:text-5xl font-bold bg-linear-to-b from-[#f5e6d3] to-[#c4a35a] bg-clip-text text-transparent drop-shadow-lg">
+                <span className="text-4xl md:text-5xl font-bold bg-linear-to-b from-cream to-gold bg-clip-text text-transparent drop-shadow-lg">
                   {String(unit.value).padStart(2, "0")}
                 </span>
 
                 {/* Separator line */}
-                <div className="w-12 h-px bg-linear-to-r from-transparent via-[#c4a35a] to-transparent my-2" />
+                <div className="w-12 h-px bg-linear-to-r from-transparent via-gold to-transparent my-2" />
 
                 {/* Label */}
-                <span className="text-[#c4a35a] text-xs md:text-sm uppercase tracking-wider font-light">
+                <span className="text-gold text-xs md:text-sm uppercase tracking-wider font-light">
                   {unit.label}
                 </span>
               </div>
 
               {/* Sparkle effect */}
-              <div className="absolute top-1.5 right-2 text-[#c4a35a] text-xs animate-sparkle">
+              <div className="absolute top-1.5 right-2 text-gold text-xs animate-sparkle">
                 ✦
               </div>
               <div
-                className="absolute bottom-1.5 left-2 text-[#c4a35a] text-xs animate-sparkle"
+                className="absolute bottom-1.5 left-2 text-gold text-xs animate-sparkle"
                 style={{ animationDelay: "0.3s" }}
               >
                 ✦
