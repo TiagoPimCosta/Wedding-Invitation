@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npm list *)",
+      "Bash(pnpm add *)",
+      "Bash(ffmpeg -i '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4' -ss 00:00:02 -frames:v 1 /tmp/wedding_frame.png)",
+      "Bash(qlmanage -t -s 1920 -o /tmp/ '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4')",
+      "Bash(brew install *)"
+    ]
+  }
+}

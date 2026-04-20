@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import SectionWrapper from "./SectionWrapper";
 
 const CountdownSection = () => {
@@ -9,6 +11,12 @@ const CountdownSection = () => {
     hours: 0,
     minutes: 0,
     seconds: 0,
+  });
+
+  const gridRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(gridRef, {
+    once: true,
+    margin: "0px 0px -60px 0px",
   });
 
   useEffect(() => {
@@ -43,63 +51,58 @@ const CountdownSection = () => {
 
   return (
     <SectionWrapper
-      sectionClassname="bg-linear-to-b from-[#2d0810] via-crimson to-[#2d0810]"
+      sectionClassname="bg-[#0c0906]"
       overline="A contagem regressiva"
-      overlineClassname="text-gold tracking-[0.3em] uppercase font-light"
+      overlineClassname="text-gold/45"
       title="Falta Pouco Para o Grande Dia"
       titleClassname="text-cream"
     >
-      {/* Countdown Grid */}
       <div
-        className="
-        grid grid-cols-3 gap-4 max-w-4xl mx-auto
-        md:flex md:flex-wrap md:justify-center md:gap-8
-      "
+        ref={gridRef}
+        className="flex flex-wrap justify-center gap-4 md:gap-5"
       >
         {timeUnits.map((unit, index) => (
-          <div
+          <motion.div
             key={unit.label}
-            className={`
-              relative group
-              ${index === 0 ? "col-span-3 justify-self-center" : "col-span-1"}
-            `}
-            style={{ animationDelay: `${index * 0.1}s` }}
+            initial={{ opacity: 0, y: 30, scale: 0.92 }}
+            animate={
+              isInView
+                ? { opacity: 1, y: 0, scale: 1 }
+                : { opacity: 0, y: 30, scale: 0.92 }
+            }
+            transition={{
+              duration: 0.7,
+              delay: index * 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="flex flex-col items-center"
           >
-            {/* Card */}
-            <div className="relative w-24 h-28 md:w-32 md:h-36 rounded-2xl overflow-hidden">
-              {/* Glowing border */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-gold via-crimson to-gold p-0.5">
-                <div className="absolute inset-0.5 rounded-2xl bg-linear-to-br from-crimson to-[#2d0810] backdrop-blur-xl" />
-              </div>
+            <div className="w-28 h-32 md:w-36 md:h-40 border border-gold/18 flex flex-col items-center justify-center gap-2.5 relative overflow-hidden">
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-2.5 h-px bg-gold/35" />
+              <div className="absolute top-0 left-0 w-px h-2.5 bg-gold/35" />
+              <div className="absolute top-0 right-0 w-2.5 h-px bg-gold/35" />
+              <div className="absolute top-0 right-0 w-px h-2.5 bg-gold/35" />
+              <div className="absolute bottom-0 left-0 w-2.5 h-px bg-gold/35" />
+              <div className="absolute bottom-0 left-0 w-px h-2.5 bg-gold/35" />
+              <div className="absolute bottom-0 right-0 w-2.5 h-px bg-gold/35" />
+              <div className="absolute bottom-0 right-0 w-px h-2.5 bg-gold/35" />
 
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col items-center justify-center">
-                {/* Number */}
-                <span className="text-4xl md:text-5xl font-bold bg-linear-to-b from-cream to-gold bg-clip-text text-transparent drop-shadow-lg">
-                  {String(unit.value).padStart(2, "0")}
-                </span>
-
-                {/* Separator line */}
-                <div className="w-12 h-px bg-linear-to-r from-transparent via-gold to-transparent my-2" />
-
-                {/* Label */}
-                <span className="text-gold text-xs md:text-sm uppercase tracking-wider font-light">
-                  {unit.label}
-                </span>
-              </div>
-
-              {/* Sparkle effect */}
-              <div className="absolute top-1.5 right-2 text-gold text-xs animate-sparkle">
-                ✦
-              </div>
-              <div
-                className="absolute bottom-1.5 left-2 text-gold text-xs animate-sparkle"
-                style={{ animationDelay: "0.3s" }}
+              <motion.span
+                className="font-cormorant-garamond text-5xl md:text-6xl font-light text-cream tabular-nums leading-none"
+                key={unit.value}
+                initial={{ opacity: 0.4, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                ✦
-              </div>
+                {String(unit.value).padStart(2, "0")}
+              </motion.span>
+              <div className="w-5 h-px bg-gold/30" />
+              <span className="font-cormorant-garamond text-gold/60 text-[9px] uppercase tracking-[0.4em]">
+                {unit.label}
+              </span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </SectionWrapper>

@@ -27,8 +27,7 @@ const TimelineSection = () => {
   return (
     <SectionWrapper
       title="Programa do dia"
-      subTitle=""
-      footer=""
+      subTitle="O programa do nosso grande dia"
       sectionClassname="bg-white"
     >
       <div className="max-w-4xl mx-auto flex justify-center relative">

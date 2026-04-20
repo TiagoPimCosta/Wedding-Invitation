@@ -129,3 +129,54 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Keyframes ─────────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50%       { transform: translateY(9px); opacity: 0.9; }
+}
+
+@keyframes expandLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Animation utilities ────────────────────────────────────────────────── */
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-hero-enter {
+  animation: heroEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.animate-scroll-bounce {
+  animation: scrollBounce 2.2s ease-in-out infinite;
+}
+
+.animate-expand-line {
+  animation: expandLine 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+  transform-origin: center;
+}
