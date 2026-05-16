@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
 interface SectionWrapperProps {
@@ -57,7 +57,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
       <motion.header
         ref={headerRef}
         className={cn(
-          "flex flex-col items-center gap-3 text-center font-cormorant-garamond px-6",
+          "flex flex-col items-center gap-3 text-center font-the-seasons px-6",
           headerClassname,
         )}
         initial={{ opacity: 0, y: 24 }}
@@ -75,7 +75,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         {title && (
           <p
             className={cn(
-              "font-great-vibes text-gold",
+              "font-parisienne text-gold",
               "text-4xl md:text-6xl",
               titleClassname,
             )}
@@ -89,7 +89,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         {subTitle && (
           <p
             className={cn(
-              "text-base md:text-lg mt-1 font-cormorant-garamond max-w-md",
+              "text-base md:text-lg mt-1 font-the-seasons max-w-md",
               subTitleClassname,
             )}
           >
@@ -104,7 +104,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
 
       {footer && (
         <footer className="flex flex-col gap-4 text-center">
-          <p className={cn("text-base font-cormorant-garamond", footerClassname)}>
+          <p className={cn("text-base font-the-seasons", footerClassname)}>
             {footer}
           </p>
         </footer>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import SectionWrapper from "./SectionWrapper";
 
@@ -89,7 +89,7 @@ const CountdownSection = () => {
               <div className="absolute bottom-0 right-0 w-px h-2.5 bg-gold/35" />
 
               <motion.span
-                className="font-cormorant-garamond text-5xl md:text-6xl font-light text-cream tabular-nums leading-none"
+                className="font-the-seasons text-5xl md:text-6xl font-light text-cream tabular-nums leading-none"
                 key={unit.value}
                 initial={{ opacity: 0.4, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ const CountdownSection = () => {
                 {String(unit.value).padStart(2, "0")}
               </motion.span>
               <div className="w-5 h-px bg-gold/30" />
-              <span className="font-cormorant-garamond text-gold/60 text-[9px] uppercase tracking-[0.4em]">
+              <span className="font-the-seasons text-gold/60 text-[9px] uppercase tracking-[0.4em]">
                 {unit.label}
               </span>
             </div>

@@ -1,164 +1,230 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionTemplate,
+} from "motion/react";
 import Image from "next/image";
 
 const HeroSection = () => {
-  const { scrollY } = useScroll();
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // As user scrolls: card shrinks, rounds, and the dark bg shows through
-  const scale = useTransform(scrollY, [0, 650], [1, 0.82]);
-  const borderRadius = useTransform(scrollY, [0, 650], [0, 22]);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-  const scrollToRsvp = () => {
-    document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const animationRange = [0, 0.7];
+
+  const scaleX = useTransform(scrollYProgress, animationRange, [1, 0.45]);
+  const scaleY = useTransform(scrollYProgress, animationRange, [1, 0.95]);
+  const imageScaleX = useTransform(scaleX, (v) => 1 / v);
+  const imageScaleY = useTransform(scaleY, (v) => 1 / v);
+  //const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // const titleDisplay = useTransform(scrollYProgress, (v) =>
+  //   v >= 0.5 ? "none" : "block",
+  // );
+  const targetRadius = useTransform(scrollYProgress, animationRange, [24, 24]);
+  const borderRadiusH = useTransform(
+    [targetRadius, scaleX],
+    ([r, sx]: number[]) => r / sx,
+  );
+  const borderRadiusV = useTransform(
+    [targetRadius, scaleY],
+    ([r, sy]: number[]) => r / sy,
+  );
+  const borderRadius = useMotionTemplate`${borderRadiusH}px / ${borderRadiusV}px`;
+
+  // Left Side Photos
+  const left1PhotoX = useTransform(scrollYProgress, animationRange, [-500, 25]);
+  const left1PhotoY = useTransform(
+    scrollYProgress,
+    animationRange,
+    [200, -400],
+  );
+
+  const left2PhotoX = useTransform(
+    scrollYProgress,
+    animationRange,
+    [-400, 125],
+  );
+  const left2PhotoY = useTransform(scrollYProgress, animationRange, [1000, 10]);
+
+  // Right Side Photos
+  const right1PhotoX = useTransform(
+    scrollYProgress,
+    animationRange,
+    [2000, 1190],
+  );
+  const right1PhotoY = useTransform(
+    scrollYProgress,
+    animationRange,
+    [300, -400],
+  );
+
+  const right2PhotoX = useTransform(
+    scrollYProgress,
+    animationRange,
+    [2000, 1190],
+  );
+  const right2PhotoY = useTransform(
+    scrollYProgress,
+    animationRange,
+    [600, -90],
+  );
 
   return (
-    // Sticky container — sits behind sections that follow (z-0)
-    <div className="sticky top-0 h-500 z-0 bg-[#0c0906] overflow-hidden">
-      <motion.div
-        style={{ scale, borderRadius }}
-        className="h-full bg-white flex flex-col overflow-hidden origin-top"
-      >
-        {/* ── Minimal Nav ─────────────────────────────────────────── */}
-        <motion.nav
-          className="flex items-center justify-between px-8 md:px-14 pt-7 pb-4 shrink-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+    <div ref={sectionRef} className="relative h-[300vh] bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Main card */}
+        <motion.div
+          style={{
+            scaleX,
+            scaleY,
+            borderRadius,
+          }}
+          className="absolute inset-3 overflow-hidden origin-center z-10"
         >
-          <p className="font-cormorant-garamond text-sm tracking-[0.45em] uppercase text-gray-700 select-none">
-            T & F
-          </p>
-          <motion.button
-            onClick={scrollToRsvp}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            className="font-cormorant-garamond text-[10px] tracking-[0.3em] uppercase px-6 py-2.5 border border-gray-300 rounded-full text-gray-500 hover:border-gray-500 hover:text-gray-700 transition-colors duration-300 cursor-pointer"
+          <motion.div
+            style={{ scaleX: imageScaleX, scaleY: imageScaleY }}
+            className="absolute inset-0"
           >
-            RSVP
-          </motion.button>
-        </motion.nav>
+            <Image
+              src="/heroBackground.jpg"
+              alt="Tiago & Fátima"
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
 
-        {/* ── Hero Body ─────────────────────────────────────────────── */}
-        <div className="flex-1 flex flex-col justify-center items-center px-8 md:px-14 py-6 gap-10 md:gap-12">
-          {/* Two square photos */}
-          <div className="w-full max-w-88 md:max-w-lg flex gap-3">
-            <motion.div
-              className="flex-1 aspect-square overflow-hidden"
-              initial={{ opacity: 0, x: -28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 1.2,
-                delay: 0.25,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <Image
-                src="/heroBackground.jpg"
-                alt="Tiago & Fátima"
-                width={600}
-                height={600}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </motion.div>
-            <motion.div
-              className="flex-1 aspect-square overflow-hidden"
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 1.2,
-                delay: 0.4,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              {/* Replace src with a second photo: e.g. "/heroBackground2.jpg" */}
-              <Image
-                src="/heroBackground.jpg"
-                alt="Tiago & Fátima"
-                width={600}
-                height={600}
-                className="w-full h-full object-cover object-right brightness-50 contrast-[1.1]"
-                priority
-              />
-            </motion.div>
-          </div>
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
 
-          {/* Tagline + names */}
-          <div className="w-full max-w-88 md:max-w-lg flex flex-col gap-5">
-            <motion.p
-              className="font-cormorant-garamond text-[1.65rem] md:text-[2.1rem] text-gray-800 leading-snug"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1,
-                delay: 0.75,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              estão <em>cordialmente</em> convidados
-              <br />
-              para a aventura que é...
-            </motion.p>
+        {/* Title */}
+        {/* TODO: Implement text fade and zoom-out */}
+        {/* <motion.div
+          style={{ opacity: titleOpacity }}
+          className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+        >
+          <h1 className="font-parisienne text-5xl md:text-9xl text-white drop-shadow-lg whitespace-nowrap">
+            Tiago & Fátima
+          </h1>
+        </motion.div> */}
 
-            <motion.div
-              className="flex flex-col gap-1.5"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.9,
-                delay: 1.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <p className="font-great-vibes text-5xl md:text-6xl text-gray-900">
-                Tiago & Fátima
-              </p>
-              <p className="font-cormorant-garamond text-[10px] tracking-[0.45em] uppercase text-gray-400">
-                10 · Outubro · 2026
-              </p>
-            </motion.div>
+        {/* Left photo 1 */}
+        <motion.div
+          style={{
+            x: left1PhotoX,
+            y: left1PhotoY,
+          }}
+          className="absolute left-3 md:left-8 top-1/2 z-30 w-100 h-100 overflow-hidden rounded-4xl"
+        >
+          <Image
+            src="/left-1-photo.jpeg"
+            alt=""
+            width={600}
+            height={600}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
 
-            {/* Linked rings */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.7,
-                delay: 1.45,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <svg
-                width="34"
-                height="20"
-                viewBox="0 0 34 20"
-                fill="none"
-                aria-hidden="true"
-              >
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="8"
-                  stroke="#b91c1c"
-                  strokeWidth="1.5"
-                />
-                <circle
-                  cx="24"
-                  cy="10"
-                  r="8"
-                  stroke="#b91c1c"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
+        {/* Left photo 2 */}
+        <motion.div
+          style={{
+            x: left2PhotoX,
+            y: left2PhotoY,
+          }}
+          className="absolute left-3 md:left-8 top-1/2 z-20 w-75 h-75 overflow-hidden rounded-4xl"
+        >
+          <Image
+            src="/left-2-photo.JPG"
+            alt=""
+            width={400}
+            height={200}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Right photo 1 */}
+        <motion.div
+          style={{
+            x: right1PhotoX,
+            y: right1PhotoY,
+          }}
+          className="absolute left-3 md:left-8 top-1/2 z-20 w-75 h-75 overflow-hidden rounded-4xl"
+        >
+          <Image
+            src="/right-1-photo.jpeg"
+            alt=""
+            width={400}
+            height={533}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Right photo 2 */}
+        <motion.div
+          style={{
+            x: right2PhotoX,
+            y: right2PhotoY,
+          }}
+          className="absolute left-3 md:left-8 top-1/2 z-30 w-100 h-100 overflow-hidden rounded-4xl"
+        >
+          <Image
+            src="/right-2-photo.JPG"
+            alt=""
+            width={400}
+            height={533}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </div>
     </div>
   );
 };
 
 export default HeroSection;
+
+// {/* Nav */}
+// const scrollToRsvp = () => {
+//    document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" });
+//  };
+//             <motion.nav
+//               className="flex items-center justify-between px-8 md:px-14 pt-7 pb-4 shrink-0"
+//               initial={{ opacity: 0 }}
+//               animate={{ opacity: 1 }}
+//               transition={{ duration: 0.9, ease: "easeOut" }}
+//             >
+//               <p className="font-the-seasons text-sm tracking-[0.45em] uppercase text-white/80 select-none">
+//                 T & F
+//               </p>
+//               <motion.button
+//                 onClick={scrollToRsvp}
+//                 whileHover={{ scale: 1.04 }}
+//                 whileTap={{ scale: 0.96 }}
+//                 className="font-the-seasons text-[10px] tracking-[0.3em] uppercase px-6 py-2.5 border border-white/30 rounded-full text-white/70 hover:border-white/60 hover:text-white transition-colors duration-300 cursor-pointer"
+//               >
+//                 RSVP
+//               </motion.button>
+//             </motion.nav>
+
+// Right photo: starts off-screen to the right, slides left and upward
+//
+
+//   // Left photo: mirrors right — starts off-screen to the left, slides right and upward
+//   const left1PhotoX = useTransform(
+//     scrollYProgress,
+//     animationRange,
+//     [-400, 100],
+//   );
+//   const left1PhotoY = useTransform(scrollYProgress, animationRange, [300, 50]);
+//
+//
+//
+//
+
+//

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
 const Footer = () => {
@@ -26,8 +26,8 @@ const Footer = () => {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="font-great-vibes text-5xl md:text-6xl text-cream/90">Tiago & Fátima</p>
-        <p className="font-cormorant-garamond text-gold/50 tracking-[0.45em] uppercase text-[10px] font-light">
+        <p className="font-parisienne text-5xl md:text-6xl text-cream/90">Tiago & Fátima</p>
+        <p className="font-the-seasons text-gold/50 tracking-[0.45em] uppercase text-[10px] font-light">
           10 · Outubro · 2026
         </p>
       </motion.div>

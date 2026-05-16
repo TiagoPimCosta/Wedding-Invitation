@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import SectionWrapper from "./SectionWrapper";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
 const faqs = [
@@ -85,11 +85,11 @@ const FAQSection = () => {
                 className="border-none border-b border-gold/10 last:border-b-0"
               >
                 <AccordionTrigger className="py-5 text-left text-cream/70 hover:text-cream hover:no-underline transition-colors duration-300 [&>svg]:text-gold/40 [&>svg]:hover:text-gold/70">
-                  <span className="font-cormorant-garamond font-medium text-base md:text-lg pr-4">
+                  <span className="font-the-seasons font-medium text-base md:text-lg pr-4">
                     {faq.question}
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 pt-1 text-cream/40 font-cormorant-garamond text-base leading-relaxed">
+                <AccordionContent className="pb-6 pt-1 text-cream/40 font-the-seasons text-base leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

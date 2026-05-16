@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Cormorant_Garamond } from "next/font/google";
+import { Parisienne, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const greatVibes = Great_Vibes({
-  variable: "--font-great-vibes",
+const parisienne = Parisienne({
+  variable: "--font-parisienne",
   subsets: ["latin"],
   weight: "400",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant-garamond",
+// Placeholder until The Seasons font files are added to public/fonts/
+const theSeasons = Cormorant_Garamond({
+  variable: "--font-the-seasons",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${greatVibes.variable} ${cormorantGaramond.variable} antialiased`}
+        className={`${parisienne.variable} ${theSeasons.variable} antialiased`}
       >
         {children}
       </body>

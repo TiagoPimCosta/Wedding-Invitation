@@ -7,7 +7,10 @@
       "Bash(pnpm add *)",
       "Bash(ffmpeg -i '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4' -ss 00:00:02 -frames:v 1 /tmp/wedding_frame.png)",
       "Bash(qlmanage -t -s 1920 -o /tmp/ '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4')",
-      "Bash(brew install *)"
+      "Bash(brew install *)",
+      "Bash(npm uninstall *)",
+      "Bash(npm --version)",
+      "Bash(pnpm remove *)"
     ]
   }
 }

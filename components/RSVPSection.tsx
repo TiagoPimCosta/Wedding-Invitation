@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import SectionWrapper from "./SectionWrapper";
 import ScrollReveal from "./ScrollReveal";
 
@@ -30,10 +30,10 @@ const RSVPSection = () => {
   };
 
   const inputClass =
-    "w-full px-0 py-3 bg-transparent border-b border-gray-200 text-gray-800 placeholder-gray-300 font-cormorant-garamond text-lg focus:outline-none focus:border-gold/70 transition-colors duration-300";
+    "w-full px-0 py-3 bg-transparent border-b border-gray-200 text-gray-800 placeholder-gray-300 font-the-seasons text-lg focus:outline-none focus:border-gold/70 transition-colors duration-300";
 
   const labelClass =
-    "text-gray-400 text-[9px] uppercase tracking-[0.45em] font-cormorant-garamond font-semibold";
+    "text-gray-400 text-[9px] uppercase tracking-[0.45em] font-the-seasons font-semibold";
 
   return (
     <SectionWrapper
@@ -58,8 +58,8 @@ const RSVPSection = () => {
                 <div className="w-1.5 h-1.5 rotate-45 bg-gold/50" />
                 <div className="flex-1 h-px bg-gold/30" />
               </div>
-              <h3 className="font-great-vibes text-6xl text-crimson">Obrigado!</h3>
-              <p className="font-cormorant-garamond text-lg text-gray-500 max-w-sm leading-relaxed">
+              <h3 className="font-parisienne text-6xl text-crimson">Obrigado!</h3>
+              <p className="font-the-seasons text-lg text-gray-500 max-w-sm leading-relaxed">
                 A vossa presença será o nosso maior presente. Até breve!
               </p>
               <div className="flex items-center gap-4 w-32">
@@ -120,7 +120,7 @@ const RSVPSection = () => {
                       key={opt.value}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`flex items-center justify-center px-4 py-3.5 border cursor-pointer transition-all duration-300 font-cormorant-garamond text-base text-center ${
+                      className={`flex items-center justify-center px-4 py-3.5 border cursor-pointer transition-all duration-300 font-the-seasons text-base text-center ${
                         form.attending === opt.value
                           ? "border-gold/60 bg-gold/5 text-gray-800"
                           : "border-gray-200 text-gray-400 hover:border-gray-300"
@@ -197,7 +197,7 @@ const RSVPSection = () => {
                 type="submit"
                 whileHover={{ scale: 1.01, backgroundColor: "rgba(87,13,22,0.88)" }}
                 whileTap={{ scale: 0.98 }}
-                className="mt-2 w-full py-4 bg-crimson text-cream font-cormorant-garamond text-sm tracking-[0.35em] uppercase cursor-pointer transition-colors duration-300"
+                className="mt-2 w-full py-4 bg-crimson text-cream font-the-seasons text-sm tracking-[0.35em] uppercase cursor-pointer transition-colors duration-300"
               >
                 Confirmar Presença
               </motion.button>

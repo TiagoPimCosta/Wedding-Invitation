@@ -47,14 +47,14 @@ const VenueSection = () => {
               />
 
               {/* Time */}
-              <p className="font-cormorant-garamond text-[10px] uppercase tracking-[0.4em] text-gold/70 flex items-center gap-1.5">
+              <p className="font-the-seasons text-[10px] uppercase tracking-[0.4em] text-gold/70 flex items-center gap-1.5">
                 <Clock className="w-2.5 h-2.5" strokeWidth={1.5} />
                 {venue.time}
               </p>
 
               {/* Venue type */}
               <h3
-                className={`font-great-vibes text-5xl md:text-6xl ${
+                className={`font-parisienne text-5xl md:text-6xl ${
                   venue.accent === "crimson" ? "text-crimson" : "text-teal"
                 }`}
               >
@@ -75,10 +75,10 @@ const VenueSection = () => {
 
               {/* Venue name & address */}
               <div className="flex flex-col gap-1.5">
-                <p className="font-cormorant-garamond text-xl font-semibold text-gray-800">
+                <p className="font-the-seasons text-xl font-semibold text-gray-800">
                   {venue.name}
                 </p>
-                <p className="font-cormorant-garamond text-sm text-gray-400 whitespace-pre-line leading-loose tracking-wide">
+                <p className="font-the-seasons text-sm text-gray-400 whitespace-pre-line leading-loose tracking-wide">
                   {venue.address}
                 </p>
               </div>
@@ -88,7 +88,7 @@ const VenueSection = () => {
                 href={venue.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-1.5 text-[10px] font-cormorant-garamond tracking-[0.3em] uppercase transition-colors ${
+                className={`inline-flex items-center gap-1.5 text-[10px] font-the-seasons tracking-[0.3em] uppercase transition-colors ${
                   venue.accent === "crimson"
                     ? "text-crimson/50 hover:text-crimson"
                     : "text-teal/50 hover:text-teal"
