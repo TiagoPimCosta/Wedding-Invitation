@@ -10,7 +10,13 @@
       "Bash(brew install *)",
       "Bash(npm uninstall *)",
       "Bash(npm --version)",
-      "Bash(pnpm remove *)"
+      "Bash(pnpm remove *)",
+      "Bash(ffprobe *)",
+      "Bash(mkdir -p /tmp/wedding_frames)",
+      "Bash(ffmpeg -i '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4' -vf \"fps=1/2\" /tmp/wedding_frames/frame_%03d.png -y -loglevel quiet)",
+      "Read(//tmp/**)",
+      "Bash(ffmpeg -i '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4' -vf \"fps=1\" /tmp/wedding_frame_%03d.png)",
+      "Bash(xargs cat -n)"
     ]
   }
 }

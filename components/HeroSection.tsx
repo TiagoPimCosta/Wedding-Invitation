@@ -77,7 +77,7 @@ const HeroSection = () => {
   );
 
   return (
-    <div ref={sectionRef} className="relative h-[300vh] bg-white">
+    <div ref={sectionRef} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Main card */}
         <motion.div

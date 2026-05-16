@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 interface SectionWrapperProps {
   children: React.ReactNode;
+  id?: string;
   headerClassname?: string;
   bodyClassname?: string;
   sectionClassname?: string;
@@ -30,6 +31,7 @@ const ThinOrnament = ({ light = false }: { light?: boolean }) => (
 const SectionWrapper = (props: SectionWrapperProps) => {
   const {
     children,
+    id,
     sectionClassname,
     headerClassname,
     bodyClassname,
@@ -48,9 +50,10 @@ const SectionWrapper = (props: SectionWrapperProps) => {
 
   return (
     <section
+      id={id}
       className={cn(
-        "pt-24 pb-20 relative overflow-hidden",
-        "flex flex-col items-center gap-12",
+        "h-screen relative overflow-hidden",
+        "flex flex-col items-center justify-center gap-10",
         sectionClassname,
       )}
     >

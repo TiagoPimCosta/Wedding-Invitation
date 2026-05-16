@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { useRef } from "react";
-import SectionWrapper from "./SectionWrapper";
 
 const CountdownSection = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -13,11 +11,8 @@ const CountdownSection = () => {
     seconds: 0,
   });
 
-  const gridRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(gridRef, {
-    once: true,
-    margin: "0px 0px -60px 0px",
-  });
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
 
   useEffect(() => {
     const weddingDate = new Date("2026-10-10");
@@ -38,7 +33,6 @@ const CountdownSection = () => {
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -50,62 +44,53 @@ const CountdownSection = () => {
   ];
 
   return (
-    <SectionWrapper
-      sectionClassname="bg-[#0c0906]"
-      overline="A contagem regressiva"
-      overlineClassname="text-gold/45"
-      title="Falta Pouco Para o Grande Dia"
-      titleClassname="text-cream"
+    <section
+      id="countdown"
+      ref={ref}
+      className="h-screen px-6 text-center overflow-hidden flex flex-col items-center justify-center"
     >
-      <div
-        ref={gridRef}
-        className="flex flex-wrap justify-center gap-4 md:gap-5"
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="font-the-seasons italic text-[#5a4030]/70 text-xl md:text-2xl mb-4"
       >
-        {timeUnits.map((unit, index) => (
-          <motion.div
-            key={unit.label}
-            initial={{ opacity: 0, y: 30, scale: 0.92 }}
-            animate={
-              isInView
-                ? { opacity: 1, y: 0, scale: 1 }
-                : { opacity: 0, y: 30, scale: 0.92 }
-            }
-            transition={{
-              duration: 0.7,
-              delay: index * 0.12,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="flex flex-col items-center"
-          >
-            <div className="w-28 h-32 md:w-36 md:h-40 border border-gold/18 flex flex-col items-center justify-center gap-2.5 relative overflow-hidden">
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-2.5 h-px bg-gold/35" />
-              <div className="absolute top-0 left-0 w-px h-2.5 bg-gold/35" />
-              <div className="absolute top-0 right-0 w-2.5 h-px bg-gold/35" />
-              <div className="absolute top-0 right-0 w-px h-2.5 bg-gold/35" />
-              <div className="absolute bottom-0 left-0 w-2.5 h-px bg-gold/35" />
-              <div className="absolute bottom-0 left-0 w-px h-2.5 bg-gold/35" />
-              <div className="absolute bottom-0 right-0 w-2.5 h-px bg-gold/35" />
-              <div className="absolute bottom-0 right-0 w-px h-2.5 bg-gold/35" />
+        so please join us...
+      </motion.p>
 
-              <motion.span
-                className="font-the-seasons text-5xl md:text-6xl font-light text-cream tabular-nums leading-none"
-                key={unit.value}
-                initial={{ opacity: 0.4, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                {String(unit.value).padStart(2, "0")}
-              </motion.span>
-              <div className="w-5 h-px bg-gold/30" />
-              <span className="font-the-seasons text-gold/60 text-[9px] uppercase tracking-[0.4em]">
-                {unit.label}
-              </span>
-            </div>
-          </motion.div>
+      <motion.h2
+        initial={{ opacity: 0, y: 24 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="font-the-seasons text-[#1e150d] text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold leading-none mb-12 tracking-tight"
+      >
+        10 outubro 2026
+      </motion.h2>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+        className="flex items-start justify-center gap-8 md:gap-12"
+      >
+        {timeUnits.map((unit) => (
+          <div key={unit.label} className="flex flex-col items-center">
+            <motion.span
+              key={unit.value}
+              initial={{ opacity: 0.5, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="font-the-seasons text-[#1e150d] text-4xl md:text-5xl tabular-nums leading-none"
+            >
+              {String(unit.value).padStart(2, "0")}
+            </motion.span>
+            <span className="text-[#5a4030]/55 text-[8px] uppercase tracking-[0.25em] mt-2">
+              {unit.label}
+            </span>
+          </div>
         ))}
-      </div>
-    </SectionWrapper>
+      </motion.div>
+    </section>
   );
 };
 

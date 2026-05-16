@@ -8,7 +8,7 @@ const Footer = () => {
   const isInView = useInView(ref, { once: true, margin: "0px 0px -40px 0px" });
 
   return (
-    <footer ref={ref} className="bg-[#0c0906] py-20 px-6 flex flex-col items-center gap-7">
+    <footer ref={ref} className="h-screen px-6 flex flex-col items-center justify-center gap-7">
       <motion.div
         className="flex items-center gap-5 w-48 md:w-64"
         initial={{ opacity: 0, scaleX: 0 }}
@@ -26,8 +26,8 @@ const Footer = () => {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="font-parisienne text-5xl md:text-6xl text-cream/90">Tiago & Fátima</p>
-        <p className="font-the-seasons text-gold/50 tracking-[0.45em] uppercase text-[10px] font-light">
+        <p className="font-parisienne text-5xl md:text-6xl text-[#1e150d]/90">Tiago & Fátima</p>
+        <p className="font-the-seasons text-gold/70 tracking-[0.45em] uppercase text-[10px] font-light">
           10 · Outubro · 2026
         </p>
       </motion.div>

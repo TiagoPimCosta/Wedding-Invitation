@@ -26,9 +26,10 @@ const venues = [
 const VenueSection = () => {
   return (
     <SectionWrapper
+      id="venue"
       title="O Local"
       subTitle="Onde celebraremos o nosso amor"
-      sectionClassname="bg-[#faf8f5]"
+      sectionClassname=""
       bodyClassname="max-w-xs md:max-w-4xl"
     >
       <div className="grid md:grid-cols-2 gap-5 w-full">
