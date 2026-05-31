@@ -130,7 +130,7 @@
   }
   body {
     @apply text-foreground;
-    background: #e0e7c8;
+    background: #F8F7F3;
     min-height: 100vh;
   }
 }
