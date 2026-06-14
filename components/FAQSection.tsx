@@ -50,10 +50,8 @@ const FAQSection = () => {
       id="faq"
       title="Perguntas Frequentes"
       subTitle="Tudo o que precisam de saber sobre o nosso dia especial"
-      footer="Ainda têm dúvidas? Falem connosco! 💌"
       sectionClassname=""
       subTitleClassname="text-[#1e150d]/50"
-      footerClassname="text-[#1e150d]/35"
     >
       <div ref={listRef}>
         <Accordion type="single" collapsible className="w-full">
