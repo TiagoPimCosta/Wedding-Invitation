@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import ThinOrnament from "./ThinOrnament";
 
 interface SectionWrapperProps {
   children: React.ReactNode;
@@ -15,21 +16,6 @@ interface SectionWrapperProps {
   subTitle?: string;
   subTitleClassname?: string;
 }
-
-const ThinOrnament = ({ light = false }: { light?: boolean }) => (
-  <div className="flex items-center justify-center gap-3 w-full">
-    <div className={cn("flex-1 max-w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
-    <span
-      className={cn(
-        "text-xl leading-none",
-        light ? "text-gold/25" : "text-gold/40",
-      )}
-    >
-      ✦
-    </span>
-    <div className={cn("flex-1 max-w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
-  </div>
-);
 
 const SectionWrapper = (props: SectionWrapperProps) => {
   const {
@@ -68,7 +54,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <ThinOrnament light />
+        <ThinOrnament />
 
         {title && (
           <p
