@@ -8,7 +8,7 @@ const HeroSection = () => {
           src="/heroBackground.jpg"
           alt="Tiago & Fátima"
           fill
-          className="object-cover"
+          className="object-cover object-[70%_50%] md:object-center"
           priority
         />
       </div>
