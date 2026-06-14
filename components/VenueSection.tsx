@@ -6,8 +6,8 @@ const venues = [
   {
     type: "Cerimónia",
     time: "15:00",
-    name: "Igreja de São João",
-    address: "Rua de São João, 45\nLisboa, 1100-000",
+    name: "Santuário do Bom Jesus do Monte",
+    address: "Estrada do Bom Jesus\n4715-056 Tenões",
     mapUrl: "https://maps.app.goo.gl/eEFnCbkGzVHYGPQbA",
     icon: Church,
     accent: "crimson" as const,
@@ -16,7 +16,7 @@ const venues = [
     type: "Recepção",
     time: "19:00",
     name: "Colina do Romão",
-    address: "R. do Moleiro 266\nSetúbal, 4775-460",
+    address: "Rua do Moleiro 266\n4775-460 Nine",
     mapUrl: "https://maps.app.goo.gl/GHiS5E1qE9ptnPKRA",
     icon: UtensilsCrossed,
     accent: "teal" as const,
@@ -67,7 +67,9 @@ const VenueSection = () => {
                 <div className="flex-1 h-px bg-gold/20" />
                 <venue.icon
                   className={`w-3.5 h-3.5 shrink-0 ${
-                    venue.accent === "crimson" ? "text-crimson/40" : "text-teal/40"
+                    venue.accent === "crimson"
+                      ? "text-crimson/40"
+                      : "text-teal/40"
                   }`}
                   strokeWidth={1.5}
                 />

@@ -10,21 +10,24 @@ interface SectionWrapperProps {
   headerClassname?: string;
   bodyClassname?: string;
   sectionClassname?: string;
-  overline?: string;
-  overlineClassname?: string;
   title: string;
   titleClassname?: string;
   subTitle?: string;
   subTitleClassname?: string;
-  footer?: string;
-  footerClassname?: string;
 }
 
 const ThinOrnament = ({ light = false }: { light?: boolean }) => (
   <div className="flex items-center justify-center gap-3 w-full">
-    <div className={cn("w-10 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
-    <div className={cn("w-[5px] h-[5px] rotate-45", light ? "bg-gold/25" : "bg-gold/40")} />
-    <div className={cn("w-10 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
+    <div className={cn("w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
+    <span
+      className={cn(
+        "text-xl leading-none",
+        light ? "text-gold/25" : "text-gold/40",
+      )}
+    >
+      ✦
+    </span>
+    <div className={cn("w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
   </div>
 );
 
@@ -35,25 +38,23 @@ const SectionWrapper = (props: SectionWrapperProps) => {
     sectionClassname,
     headerClassname,
     bodyClassname,
-    overline,
-    overlineClassname,
     title,
     titleClassname,
     subTitle,
     subTitleClassname,
-    footer,
-    footerClassname,
   } = props;
 
   const headerRef = useRef<HTMLElement>(null);
-  const isInView = useInView(headerRef, { once: true, margin: "0px 0px -40px 0px" });
+  const isInView = useInView(headerRef, {
+    once: true,
+    margin: "0px 0px -40px 0px",
+  });
 
   return (
     <section
       id={id}
       className={cn(
-        "h-screen relative overflow-hidden",
-        "flex flex-col items-center justify-center gap-10",
+        "flex flex-col items-center justify-center gap-10 py-20",
         sectionClassname,
       )}
     >
@@ -69,17 +70,11 @@ const SectionWrapper = (props: SectionWrapperProps) => {
       >
         <ThinOrnament light />
 
-        {overline && (
-          <p className={cn("text-[10px] uppercase tracking-[0.5em] mt-1", overlineClassname)}>
-            {overline}
-          </p>
-        )}
-
         {title && (
           <p
             className={cn(
               "font-parisienne text-gold",
-              "text-4xl md:text-6xl",
+              "text-4xl md:text-7xl",
               titleClassname,
             )}
           >
@@ -101,17 +96,14 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         )}
       </motion.header>
 
-      <div className={cn("max-w-xs md:max-w-3xl w-full px-6 md:px-0", bodyClassname)}>
+      <div
+        className={cn(
+          "max-w-xs md:max-w-3xl w-full px-6 md:px-0",
+          bodyClassname,
+        )}
+      >
         {children}
       </div>
-
-      {footer && (
-        <footer className="flex flex-col gap-4 text-center">
-          <p className={cn("text-base font-the-seasons", footerClassname)}>
-            {footer}
-          </p>
-        </footer>
-      )}
     </section>
   );
 };
