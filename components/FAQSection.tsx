@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -5,74 +7,79 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import SectionWrapper from "./SectionWrapper";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 const faqs = [
   {
-    question: "When and where is the ceremony?",
+    question: "Quando e onde é a cerimónia?",
     answer:
-      "The ceremony will take place on December 25th, 2025, at 4:00 PM. The venue details will be shared in your personal invitation.",
+      "A cerimónia terá lugar no dia 10 de Outubro de 2026, às 15:00, na Igreja de São João, em Lisboa. A recepção seguir-se-á a partir das 19:00 na Quinta dos Sonhos, em Setúbal.",
   },
   {
-    question: "What is the dress code?",
+    question: "Qual é o dress code?",
     answer:
-      "We're having a Christmas-themed wedding! We encourage festive formal attire. Think elegant reds, greens, golds, or classic black and white with holiday accessories.",
+      "Pedimos traje formal ou semi-formal. Inspirem-se na nossa paleta: tons de bordeaux, dourado, verde-escuro e creme. Por favor, reservem o branco para a noiva!",
   },
   {
-    question: "Can I bring a plus one?",
+    question: "Posso trazer acompanhante?",
     answer:
-      "Due to venue capacity, we kindly ask that you only bring guests who are named on your invitation. If you have any questions, please reach out to us directly.",
+      "Devido à capacidade do espaço, pedimos que tragam apenas os convidados indicados no convite. Se tiverem alguma dúvida, não hesitem em falar connosco diretamente.",
   },
   {
-    question: "Will there be parking available?",
+    question: "Haverá estacionamento disponível?",
     answer:
-      "Yes! Complimentary parking will be available at the venue. Detailed directions and parking information will be included in your formal invitation.",
+      "Sim! Estacionamento gratuito estará disponível na Quinta dos Sonhos. Para a cerimónia em Lisboa, recomendamos o parque de estacionamento mais próximo da Igreja de São João.",
   },
   {
-    question: "What time should I arrive?",
+    question: "A que horas devo chegar?",
     answer:
-      "We recommend arriving 30 minutes before the ceremony begins to allow time for seating. The ceremony will start promptly at 4:00 PM.",
-  },
-  {
-    question: "Will the event be indoors or outdoors?",
-    answer:
-      "The ceremony and reception will be held indoors in a beautifully decorated Christmas setting, so you'll be warm and cozy!",
-  },
-  {
-    question: "Are children welcome?",
-    answer:
-      "While we love your little ones, this will be an adults-only celebration. We hope you understand and can arrange childcare for the evening.",
-  },
-  {
-    question: "What food will be served?",
-    answer:
-      "We'll have a festive dinner with traditional Portuguese cuisine and Christmas favorites. Please let us know of any dietary restrictions when you RSVP.",
+      "Recomendamos chegar 20 a 30 minutos antes do início da cerimónia para garantir um lugar sentado. A cerimónia terá início rigorosamente às 15:00.",
   },
 ];
 
 const FAQSection = () => {
+  const listRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(listRef, {
+    once: true,
+    margin: "0px 0px -60px 0px",
+  });
+
   return (
     <SectionWrapper
-      title="Frequently Asked Questions"
-      subTitle="Everything you need to know about our special day"
-      footer="Still have questions? Reach out to us directly! 💌"
+      id="faq"
+      title="Perguntas Frequentes"
+      subTitle="Tudo o que precisam de saber sobre o nosso dia especial"
+      sectionClassname=""
+      subTitleClassname="text-[#1e150d]/50"
     >
-      <div className="relative bg-forest/30 backdrop-blur-md rounded-2xl border border-gold/20 p-6 md:p-8 w-full">
-        <Accordion type="single" collapsible className="space-y-3">
+      <div ref={listRef}>
+        <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
-            <AccordionItem
+            <motion.div
               key={index}
-              value={`item-${index}`}
-              className="border-none bg-burgundy/20 rounded-xl overflow-hidden backdrop-blur-sm"
+              initial={{ opacity: 0, x: -16 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 }}
+              transition={{
+                duration: 0.55,
+                delay: index * 0.07,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
-              <AccordionTrigger className="px-5 py-4 text-left text-cream hover:text-gold hover:no-underline transition-colors group">
-                <span className="flex items-center gap-3">
-                  <span className="font-medium">{faq.question}</span>
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="px-5 pb-4 text-cream/80 border-t border-gold/10 pt-4 ml-8">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+              <AccordionItem
+                value={`item-${index}`}
+                className="border-none border-b border-gold/10 last:border-b-0"
+              >
+                <AccordionTrigger className="py-5 text-left text-[#1e150d]/70 hover:text-[#1e150d] hover:no-underline transition-colors duration-300 [&>svg]:text-gold/40 [&>svg]:hover:text-gold/70">
+                  <span className="font-the-seasons font-medium text-base md:text-lg pr-4">
+                    {faq.question}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 pt-1 text-[#1e150d]/45 font-the-seasons text-base leading-relaxed">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
       </div>

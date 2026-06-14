@@ -1,88 +1,95 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
+import ThinOrnament from "./ThinOrnament";
 
 interface SectionWrapperProps {
   children: React.ReactNode;
+  id?: string;
   headerClassname?: string;
   bodyClassname?: string;
   sectionClassname?: string;
-  overline?: string;
-  overlineClassname?: string;
   title: string;
   titleClassname?: string;
   subTitle?: string;
   subTitleClassname?: string;
-  footer?: string;
-  footerClassname?: string;
 }
 
 const SectionWrapper = (props: SectionWrapperProps) => {
   const {
     children,
+    id,
     sectionClassname,
     headerClassname,
     bodyClassname,
-    overline,
-    overlineClassname,
     title,
     titleClassname,
     subTitle,
     subTitleClassname,
-    footer,
-    footerClassname,
   } = props;
+
+  const headerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(headerRef, {
+    once: true,
+    margin: "0px 0px -40px 0px",
+  });
 
   return (
     <section
+      id={id}
       className={cn(
-        "pt-18 pb-12 relative overflow-hidden",
-        "flex flex-col items-center gap-12",
+        "flex flex-col items-center justify-center gap-10 py-20",
         sectionClassname,
       )}
     >
-      <header
+      <motion.header
+        ref={headerRef}
         className={cn(
-          "flex flex-col gap-4 text-center font-cormorant-garamond",
+          "flex flex-col items-center gap-3 text-center font-the-seasons px-6",
           headerClassname,
         )}
+        initial={{ opacity: 0, y: 24 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        {overline && (
-          <p className={cn("text-sm md:text-base", overlineClassname)}>
-            {overline}
-          </p>
-        )}
+        <ThinOrnament />
+
         {title && (
           <p
             className={cn(
-              "font-great-vibes text-gold",
-              "text-3xl md:text-5xl",
+              "font-parisienne text-gold",
+              "text-4xl md:text-7xl",
               titleClassname,
             )}
           >
             {title}
           </p>
         )}
+
+        <ThinOrnament />
+
         {subTitle && (
           <p
             className={cn(
-              "text-base md:text-lg",
-              "font-cormorant-garamond",
+              "text-base md:text-lg mt-1 font-the-seasons max-w-md",
               subTitleClassname,
             )}
           >
             {subTitle}
           </p>
         )}
-      </header>
-      <div className={cn("max-w-xs md:max-w-3xl w-full", bodyClassname)}>
+      </motion.header>
+
+      <div
+        className={cn(
+          "max-w-xs md:max-w-3xl w-full px-6 md:px-0",
+          bodyClassname,
+        )}
+      >
         {children}
       </div>
-      <footer className={cn("flex flex-col gap-4 text-center")}>
-        {footer && (
-          <p className={cn("text-lg font-cormorant-garamond", footerClassname)}>
-            {footer}
-          </p>
-        )}
-      </footer>
     </section>
   );
 };

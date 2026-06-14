@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import SectionWrapper from "./SectionWrapper";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "motion/react";
 
 const CountdownSection = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -10,6 +10,9 @@ const CountdownSection = () => {
     minutes: 0,
     seconds: 0,
   });
+
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
 
   useEffect(() => {
     const weddingDate = new Date("2026-10-10");
@@ -30,7 +33,6 @@ const CountdownSection = () => {
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -42,67 +44,53 @@ const CountdownSection = () => {
   ];
 
   return (
-    <SectionWrapper
-      sectionClassname="bg-linear-to-b from-[#1a0f0f] via-[#2d1810] to-[#1a0f0f]"
-      overline="A contagem regressiva"
-      overlineClassname="text-[#c4a35a] tracking-[0.3em] uppercase font-light"
-      title="Falta Pouco Para o Grande Dia"
-      titleClassname="text-[#f5e6d3]"
+    <section
+      id="countdown"
+      ref={ref}
+      className="h-screen px-6 text-center overflow-hidden flex flex-col items-center justify-center"
     >
-      {/* Countdown Grid */}
-      <div
-        className="
-        grid grid-cols-3 gap-4 max-w-4xl mx-auto
-        md:flex md:flex-wrap md:justify-center md:gap-8
-      "
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="font-the-seasons italic text-[#5a4030]/70 text-xl md:text-2xl mb-4"
       >
-        {timeUnits.map((unit, index) => (
-          <div
-            key={unit.label}
-            className={`
-              relative group
-              ${index === 0 ? "col-span-3 justify-self-center" : "col-span-1"}
-            `}
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            {/* Card */}
-            <div className="relative w-24 h-28 md:w-32 md:h-36 rounded-2xl overflow-hidden">
-              {/* Glowing border */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-[#c4a35a] via-[#8b0000] to-[#c4a35a] p-0.5">
-                <div className="absolute inset-0.5 rounded-2xl bg-linear-to-br from-[#2d1810] to-[#1a0f0f] backdrop-blur-xl" />
-              </div>
+        so please join us...
+      </motion.p>
 
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col items-center justify-center">
-                {/* Number */}
-                <span className="text-4xl md:text-5xl font-bold bg-linear-to-b from-[#f5e6d3] to-[#c4a35a] bg-clip-text text-transparent drop-shadow-lg">
-                  {String(unit.value).padStart(2, "0")}
-                </span>
+      <motion.h2
+        initial={{ opacity: 0, y: 24 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="font-the-seasons text-[#1e150d] text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold leading-none mb-12 tracking-tight"
+      >
+        10 outubro 2026
+      </motion.h2>
 
-                {/* Separator line */}
-                <div className="w-12 h-px bg-linear-to-r from-transparent via-[#c4a35a] to-transparent my-2" />
-
-                {/* Label */}
-                <span className="text-[#c4a35a] text-xs md:text-sm uppercase tracking-wider font-light">
-                  {unit.label}
-                </span>
-              </div>
-
-              {/* Sparkle effect */}
-              <div className="absolute top-1.5 right-2 text-[#c4a35a] text-xs animate-sparkle">
-                ✦
-              </div>
-              <div
-                className="absolute bottom-1.5 left-2 text-[#c4a35a] text-xs animate-sparkle"
-                style={{ animationDelay: "0.3s" }}
-              >
-                ✦
-              </div>
-            </div>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+        className="flex items-start justify-center gap-8 md:gap-12"
+      >
+        {timeUnits.map((unit) => (
+          <div key={unit.label} className="flex flex-col items-center">
+            <motion.span
+              key={unit.value}
+              initial={{ opacity: 0.5, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="font-the-seasons text-[#1e150d] text-4xl md:text-5xl tabular-nums leading-none"
+            >
+              {String(unit.value).padStart(2, "0")}
+            </motion.span>
+            <span className="text-[#5a4030]/55 text-[8px] uppercase tracking-[0.25em] mt-2">
+              {unit.label}
+            </span>
           </div>
         ))}
-      </div>
-    </SectionWrapper>
+      </motion.div>
+    </section>
   );
 };
 

@@ -20,7 +20,7 @@ const VideoSection = () => {
 
   return (
     <SectionWrapper title="Um pequeno video">
-      <video src={videoSrc} controls autoPlay className="rounded-4xl" />
+      <video src={videoSrc} controls playsInline className="rounded-4xl" />
     </SectionWrapper>
   );
 };

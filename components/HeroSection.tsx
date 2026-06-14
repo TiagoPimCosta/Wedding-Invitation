@@ -1,20 +1,25 @@
-import { cn } from "@/lib/utils";
-import { Separator } from "./ui/separator";
-
-const namesClassname = "text-center font-great-vibes";
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="w-full h-screen flex flex-col justify-center items-center gap-2 bg-[url('/heroBackground.jpg')] bg-cover bg-center bg-no-repeat">
-      <p className={cn(namesClassname, "text-lg")}>O nosso casamento</p>
-      <div>
-        <h1 className={cn(namesClassname, "text-5xl")}>Tiago</h1>
-        <h2 className={cn(namesClassname, "text-3xl")}>&</h2>
-        <h1 className={cn(namesClassname, "text-5xl")}>Fátima</h1>
+    <div className="relative h-screen">
+      <div className="absolute inset-0">
+        <Image
+          src="/heroBackground.JPG"
+          alt="Tiago & Fátima"
+          fill
+          className="object-cover"
+          priority
+        />
       </div>
-      <Separator className="w-3/4 sm:w-1/3" />
-      <p className={cn(namesClassname, "text-3xl")}>10 de Outubro de 2026</p>
-    </section>
+
+      <div className="absolute inset-0 bg-black/15" />
+      <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+        <h1 className="font-parisienne text-5xl md:text-9xl text-white drop-shadow-lg whitespace-nowrap">
+          Tiago & Fátima
+        </h1>
+      </div>
+    </div>
   );
 };
 

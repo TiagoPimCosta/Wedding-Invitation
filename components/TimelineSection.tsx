@@ -26,10 +26,10 @@ const timelineEvents = [
 const TimelineSection = () => {
   return (
     <SectionWrapper
+      id="timeline"
       title="Programa do dia"
-      subTitle=""
-      footer=""
-      sectionClassname="bg-white"
+      subTitle="O programa do nosso grande dia"
+      sectionClassname=""
     >
       <div className="max-w-4xl mx-auto flex justify-center relative">
         <Timeline items={timelineEvents} />
