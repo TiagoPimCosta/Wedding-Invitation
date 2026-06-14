@@ -5,7 +5,7 @@ const HeroSection = () => {
     <div className="relative h-screen">
       <div className="absolute inset-0">
         <Image
-          src="/heroBackground.JPG"
+          src="/heroBackground.jpg"
           alt="Tiago & Fátima"
           fill
           className="object-cover"
