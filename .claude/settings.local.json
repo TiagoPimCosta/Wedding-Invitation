@@ -16,7 +16,19 @@
       "Bash(ffmpeg -i '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4' -vf \"fps=1/2\" /tmp/wedding_frames/frame_%03d.png -y -loglevel quiet)",
       "Read(//tmp/**)",
       "Bash(ffmpeg -i '/Users/tiagopimcosta/Desktop/example_wedding_website.mp4' -vf \"fps=1\" /tmp/wedding_frame_%03d.png)",
-      "Bash(xargs cat -n)"
+      "Bash(xargs cat -n)",
+      "Bash(npm i *)",
+      "Bash(npx playwright *)",
+      "Bash(echo \"done $?\")",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(node /tmp/measure.mjs)",
+      "Bash(cp /tmp/measure.mjs ./measure.mjs)",
+      "Bash(node measure.mjs)",
+      "Bash(rm -f measure.mjs)",
+      "Bash(npm init *)",
+      "Bash(echo \"exit $?\")",
+      "Bash(ls /tmp/node_modules/playwright)",
+      "Bash(node shot.mjs)"
     ]
   }
 }

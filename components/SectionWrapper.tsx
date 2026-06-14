@@ -18,7 +18,7 @@ interface SectionWrapperProps {
 
 const ThinOrnament = ({ light = false }: { light?: boolean }) => (
   <div className="flex items-center justify-center gap-3 w-full">
-    <div className={cn("w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
+    <div className={cn("flex-1 max-w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
     <span
       className={cn(
         "text-xl leading-none",
@@ -27,7 +27,7 @@ const ThinOrnament = ({ light = false }: { light?: boolean }) => (
     >
       ✦
     </span>
-    <div className={cn("w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
+    <div className={cn("flex-1 max-w-50 h-px", light ? "bg-gold/15" : "bg-gold/25")} />
   </div>
 );
 
