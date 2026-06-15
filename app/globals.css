@@ -8,10 +8,9 @@
   --color-foreground: var(--foreground);
   --font-parisienne: var(--font-parisienne);
   --font-the-seasons: var(--font-the-seasons);
-  --color-crimson: #570d16;
+  --color-red: #570d16;
   --color-gold: #ba9b62;
-  --color-teal: #385957;
-  --color-forest: #385957;
+  --color-green: #385957;
   --color-burgundy: #570d16;
   --color-cream: #f5e6d3;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -130,7 +129,7 @@
   }
   body {
     @apply text-foreground;
-    background: #F8F7F3;
+    background: #ebe5de;
     min-height: 100vh;
   }
 }
