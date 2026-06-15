@@ -10,7 +10,7 @@ const venues = [
     address: "Estrada do Bom Jesus\n4715-056 Tenões",
     mapUrl: "https://maps.app.goo.gl/eEFnCbkGzVHYGPQbA",
     icon: Church,
-    accent: "crimson" as const,
+    accent: "red" as const,
   },
   {
     type: "Recepção",
@@ -19,7 +19,7 @@ const venues = [
     address: "Rua do Moleiro 266\n4775-460 Nine",
     mapUrl: "https://maps.app.goo.gl/GHiS5E1qE9ptnPKRA",
     icon: UtensilsCrossed,
-    accent: "teal" as const,
+    accent: "green" as const,
   },
 ];
 
@@ -43,7 +43,7 @@ const VenueSection = () => {
               {/* Top accent line */}
               <div
                 className={`absolute top-0 left-1/3 right-1/3 h-[1.5px] transition-all duration-500 group-hover:left-1/4 group-hover:right-1/4 ${
-                  venue.accent === "crimson" ? "bg-crimson/40" : "bg-teal/40"
+                  venue.accent === "red" ? "bg-red/40" : "bg-green/40"
                 }`}
               />
 
@@ -56,7 +56,7 @@ const VenueSection = () => {
               {/* Venue type */}
               <h3
                 className={`font-parisienne text-5xl md:text-6xl ${
-                  venue.accent === "crimson" ? "text-crimson" : "text-teal"
+                  venue.accent === "red" ? "text-red" : "text-green"
                 }`}
               >
                 {venue.type}
@@ -67,9 +67,7 @@ const VenueSection = () => {
                 <div className="flex-1 h-px bg-gold/20" />
                 <venue.icon
                   className={`w-3.5 h-3.5 shrink-0 ${
-                    venue.accent === "crimson"
-                      ? "text-crimson/40"
-                      : "text-teal/40"
+                    venue.accent === "red" ? "text-red/40" : "text-green/40"
                   }`}
                   strokeWidth={1.5}
                 />
@@ -92,9 +90,9 @@ const VenueSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-1.5 text-[10px] font-the-seasons tracking-[0.3em] uppercase transition-colors ${
-                  venue.accent === "crimson"
-                    ? "text-crimson/50 hover:text-crimson"
-                    : "text-teal/50 hover:text-teal"
+                  venue.accent === "red"
+                    ? "text-red/50 hover:text-red"
+                    : "text-green/50 hover:text-green"
                 }`}
               >
                 <MapPin className="w-2.5 h-2.5" strokeWidth={1.5} />

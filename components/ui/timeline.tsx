@@ -41,7 +41,7 @@ function TimelineItem(props: TimelineItemProps) {
     <div className="flex gap-4  items-center w-full">
       <div className="flex justify-center relative z-10">
         <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg border-3 border-gold/50 hover:scale-110 transition-transform duration-500">
-          <Icon className="w-7 h-7 text-crimson" />
+          <Icon className="w-7 h-7 text-red" />
         </div>
       </div>
 
@@ -49,7 +49,7 @@ function TimelineItem(props: TimelineItemProps) {
         <div className="flex gap-2 items-center">
           <Badge
             variant="outline"
-            className="rounded bg-teal text-cream h-fit border-teal"
+            className="rounded bg-green text-cream h-fit border-green"
           >
             {time}
           </Badge>

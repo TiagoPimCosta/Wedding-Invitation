@@ -47,7 +47,7 @@ const CountdownSection = () => {
     <section
       id="countdown"
       ref={ref}
-      className="h-screen px-6 text-center overflow-hidden flex flex-col items-center justify-center"
+      className="px-6 text-center overflow-hidden flex flex-col items-center justify-center"
     >
       <motion.p
         initial={{ opacity: 0, y: 12 }}
@@ -62,7 +62,7 @@ const CountdownSection = () => {
         initial={{ opacity: 0, y: 24 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className="font-the-seasons text-[#1e150d] text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold leading-none mb-12 tracking-tight"
+        className="font-the-seasons text-red text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold leading-none mb-12 tracking-tight"
       >
         10 outubro 2026
       </motion.h2>
@@ -80,11 +80,11 @@ const CountdownSection = () => {
               initial={{ opacity: 0.5, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="font-the-seasons text-[#1e150d] text-4xl md:text-5xl tabular-nums leading-none"
+              className="font-the-seasons text-green text-4xl md:text-5xl tabular-nums leading-none"
             >
               {String(unit.value).padStart(2, "0")}
             </motion.span>
-            <span className="text-[#5a4030]/55 text-[8px] uppercase tracking-[0.25em] mt-2">
+            <span className="text-green/55 text-[8px] uppercase tracking-[0.25em] mt-2">
               {unit.label}
             </span>
           </div>

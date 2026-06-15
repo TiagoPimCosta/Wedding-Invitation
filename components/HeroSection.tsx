@@ -2,22 +2,26 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <div className="relative h-screen">
-      <div className="absolute inset-0">
-        <Image
-          src="/heroBackground.jpg"
-          alt="Tiago & Fátima"
-          fill
-          className="object-cover object-[70%_50%] md:object-center"
-          priority
-        />
-      </div>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-12 relative py-12">
+      <h1 className="font-parisienne text-5xl md:text-9xl text-[#570d16] whitespace-nowrap">
+        Tiago & Fátima
+      </h1>
 
-      <div className="absolute inset-0 bg-black/15" />
-      <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <h1 className="font-parisienne text-5xl md:text-9xl text-white drop-shadow-lg whitespace-nowrap">
-          Tiago & Fátima
-        </h1>
+      <Image
+        src="/0086.jpg"
+        alt="Tiago & Fátima"
+        width={1400}
+        height={1000}
+        quality={90}
+        sizes="700px"
+        className="w-175 h-auto object-cover object-center"
+        priority
+      />
+
+      <div className="flex flex-col md:flex-row justify-between font-the-seasons max-w-5xl w-full text-green text-lg mt-8">
+        <p>10 Outubro 2026</p>
+        <p>Responder até dia 10 Setembro 2026</p>
+        <p>asdadasd, asdsdas</p>
       </div>
     </div>
   );
