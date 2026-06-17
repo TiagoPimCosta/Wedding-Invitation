@@ -30,7 +30,7 @@ const VenueSection = () => {
       title="O Local"
       subTitle="Onde celebraremos o nosso amor"
       sectionClassname=""
-      bodyClassname="max-w-xs md:max-w-4xl"
+      bodyClassname="max-w-sm md:max-w-4xl"
     >
       <div className="grid md:grid-cols-2 gap-5 w-full">
         {venues.map((venue, i) => (
