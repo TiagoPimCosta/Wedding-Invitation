@@ -47,7 +47,7 @@ const CountdownSection = () => {
     <section
       id="countdown"
       ref={ref}
-      className="px-6 text-center overflow-hidden flex flex-col items-center justify-center"
+      className="px-6 py-16 sm:py-20 text-center overflow-hidden flex flex-col items-center justify-center"
     >
       <motion.p
         initial={{ opacity: 0, y: 12 }}
@@ -62,7 +62,7 @@ const CountdownSection = () => {
         initial={{ opacity: 0, y: 24 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className="font-the-seasons text-red text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold leading-none mb-12 tracking-tight"
+        className="font-the-seasons text-red text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold leading-none mb-8 sm:mb-12 tracking-tight"
       >
         10 outubro 2026
       </motion.h2>
@@ -71,7 +71,7 @@ const CountdownSection = () => {
         initial={{ opacity: 0, y: 16 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-        className="flex items-start justify-center gap-8 md:gap-12"
+        className="flex items-start justify-center gap-5 sm:gap-8 md:gap-12"
       >
         {timeUnits.map((unit) => (
           <div key={unit.label} className="flex flex-col items-center">
@@ -80,7 +80,7 @@ const CountdownSection = () => {
               initial={{ opacity: 0.5, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="font-the-seasons text-green text-4xl md:text-5xl tabular-nums leading-none"
+              className="font-the-seasons text-green text-3xl sm:text-4xl md:text-5xl tabular-nums leading-none"
             >
               {String(unit.value).padStart(2, "0")}
             </motion.span>
