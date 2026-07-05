@@ -1,14 +1,24 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const PhotoSection = () => {
+interface PhotoSectionProps {
+  imageSrc: string;
+  imageClassname: string;
+}
+
+const PhotoSection = (props: PhotoSectionProps) => {
+  const { imageSrc, imageClassname } = props;
   return (
     <div className="relative h-screen">
       <div className="absolute inset-0">
         <Image
-          src="/0095.jpg"
+          src={imageSrc}
           alt="Tiago & Fátima"
           fill
-          className="object-cover object-[70%_50%] md:object-center"
+          className={cn(
+            "object-cover object-[70%_20%] md:object-center",
+            imageClassname,
+          )}
           priority
         />
       </div>

@@ -5,7 +5,7 @@ import ScrollReveal from "./ScrollReveal";
 const venues = [
   {
     type: "Cerimónia",
-    time: "15:00",
+    time: "11:00",
     name: "Santuário do Bom Jesus do Monte",
     address: "Estrada do Bom Jesus\n4715-056 Tenões",
     mapUrl: "https://maps.app.goo.gl/eEFnCbkGzVHYGPQbA",
@@ -14,7 +14,7 @@ const venues = [
   },
   {
     type: "Recepção",
-    time: "19:00",
+    time: "13:00",
     name: "Colina do Romão",
     address: "Rua do Moleiro 266\n4775-460 Nine",
     mapUrl: "https://maps.app.goo.gl/GHiS5E1qE9ptnPKRA",
@@ -48,7 +48,7 @@ const VenueSection = () => {
               />
 
               {/* Time */}
-              <p className="font-the-seasons text-[10px] uppercase tracking-[0.4em] text-gold/70 flex items-center gap-1.5">
+              <p className="font-the-seasons text-base uppercase tracking-[0.4em] text-gold/70 flex items-center gap-1.5">
                 <Clock className="w-2.5 h-2.5" strokeWidth={1.5} />
                 {venue.time}
               </p>

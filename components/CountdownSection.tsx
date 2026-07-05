@@ -53,9 +53,9 @@ const CountdownSection = () => {
         initial={{ opacity: 0, y: 12 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="font-the-seasons italic text-[#5a4030]/70 text-xl md:text-2xl mb-4"
+        className="font-the-seasons italic text-[#5a4030]/70 text-lg md:text-xl mb-4"
       >
-        so please join us...
+        venham celebrar connosco...
       </motion.p>
 
       <motion.h2

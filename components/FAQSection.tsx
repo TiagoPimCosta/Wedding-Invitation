@@ -12,29 +12,34 @@ import { useRef } from "react";
 
 const faqs = [
   {
-    question: "Quando e onde é a cerimónia?",
+    question: "Existe algum dress code para o casamento?",
     answer:
-      "A cerimónia terá lugar no dia 10 de Outubro de 2026, às 15:00, na Igreja de São João, em Lisboa. A recepção seguir-se-á a partir das 19:00 na Quinta dos Sonhos, em Setúbal.",
+      "Não, não existe nenhum dress code específico mas quanto mais combinarem com as cores de Natal melhor ambiente conseguimos criar. Apenas é proibido vestir branco, porque é o dia mais especial da noiva e preto, pois o casamento é uma celebração com muita felicidade e apenas queremos cores que transmitam isso.",
   },
   {
-    question: "Qual é o dress code?",
+    question: "O casamento é adequado para crianças?",
     answer:
-      "Pedimos traje formal ou semi-formal. Inspirem-se na nossa paleta: tons de bordeaux, dourado, verde-escuro e creme. Por favor, reservem o branco para a noiva!",
+      "Claro que sim, todos são convidados para se divertirem neste dia tão especial. Não teremos animadora infantil, mas a quinta disponibiliza uma sala com berços para as crianças descansarem e alguns brinquedos para se divertirem.",
   },
   {
-    question: "Posso trazer acompanhante?",
+    question: "Existe estacionamento disponível na Colina do Romão?",
     answer:
-      "Devido à capacidade do espaço, pedimos que tragam apenas os convidados indicados no convite. Se tiverem alguma dúvida, não hesitem em falar connosco diretamente.",
+      "Sim, quando entrarem na quinta vão ter pessoas responsáveis a indicar-vos o caminho para o estacionamento.",
   },
   {
-    question: "Haverá estacionamento disponível?",
+    question: "Até quando devo confirmar a minha presença?",
     answer:
-      "Sim! Estacionamento gratuito estará disponível na Quinta dos Sonhos. Para a cerimónia em Lisboa, recomendamos o parque de estacionamento mais próximo da Igreja de São João.",
+      "No máximo deve confirmar um mês antes, ou seja, até dia 10 de Setembro.",
   },
   {
-    question: "A que horas devo chegar?",
+    question: "Existem sugestões de alojamento próximo do espaço?",
     answer:
-      "Recomendamos chegar 20 a 30 minutos antes do início da cerimónia para garantir um lugar sentado. A cerimónia terá início rigorosamente às 15:00.",
+      "Sim, a própria quinta disponibiliza bungalows com dois quartos cada um. Caso tenham interesse, contactem os noivos para ver os preços e disponibilidade. Além disso, também exitem hotéis relativamente perto da quinta.",
+  },
+  {
+    question: "A que horas começa a cerimónia? E o almoço?",
+    answer:
+      "A cerimónia inicia na Igreja do Bom Jesus, em Braga, às 11h da manhã. Após este momento, os noivos vão aproveitar o Bom Jesus, que é um lugar muito especial e bonito para tirar fotos. Nesse sentido, apenas iremos deslocar-nos para a quinta Colina do Romão por volta das 13h.",
   },
 ];
 
@@ -50,8 +55,6 @@ const FAQSection = () => {
       id="faq"
       title="Perguntas Frequentes"
       subTitle="Tudo o que precisam de saber sobre o nosso dia especial"
-      sectionClassname=""
-      subTitleClassname="text-[#1e150d]/50"
     >
       <div ref={listRef}>
         <Accordion type="single" collapsible className="w-full">
@@ -71,11 +74,11 @@ const FAQSection = () => {
                 className="border-none border-b border-gold/10 last:border-b-0"
               >
                 <AccordionTrigger className="py-5 text-left text-[#1e150d]/70 hover:text-[#1e150d] hover:no-underline transition-colors duration-300 [&>svg]:text-gold/40 [&>svg]:hover:text-gold/70">
-                  <span className="font-the-seasons font-medium text-base md:text-lg pr-4">
+                  <span className="font-the-seasons font-medium text-lg md:text-xl pr-4">
                     {faq.question}
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 pt-1 text-[#1e150d]/45 font-the-seasons text-base leading-relaxed">
+                <AccordionContent className="pb-6 pt-1 text-[#1e150d]/45 font-the-seasons text-base md:text-lg leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

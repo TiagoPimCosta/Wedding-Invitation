@@ -73,7 +73,7 @@ const SectionWrapper = (props: SectionWrapperProps) => {
         {subTitle && (
           <p
             className={cn(
-              "text-base md:text-lg mt-1 font-the-seasons max-w-md",
+              "text-lg md:text-xl mt-1 font-the-seasons max-w-md text-[#1e150d]/50",
               subTitleClassname,
             )}
           >
