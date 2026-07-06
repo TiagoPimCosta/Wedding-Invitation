@@ -13,7 +13,7 @@ const venues = [
     accent: "red" as const,
   },
   {
-    type: "Recepção",
+    type: "Receção",
     time: "13:00",
     name: "Colina do Romão",
     address: "Rua do Moleiro 266\n4775-460 Nine",
