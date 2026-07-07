@@ -20,7 +20,7 @@ const HeroSection = () => {
 
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-4 md:gap-0 font-the-seasons max-w-5xl w-full text-green text-lg sm:text-xl text-center md:text-left mt-4 sm:mt-8">
         <p>10 de Outubro 2026</p>
-        <p>Responder até dia 10 de Setembro 2026</p>
+        <p>Confirmar até dia 10 de Setembro 2026</p>
       </div>
     </div>
   );
