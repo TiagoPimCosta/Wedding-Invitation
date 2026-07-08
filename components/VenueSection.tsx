@@ -14,7 +14,7 @@ const venues = [
   },
   {
     type: "Receção",
-    time: "13:00",
+    time: "14:00",
     name: "Colina do Romão",
     address: "Rua do Moleiro 266\n4775-460 Nine",
     mapUrl: "https://maps.app.goo.gl/GHiS5E1qE9ptnPKRA",

@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "A que horas começa a cerimónia? E o almoço?",
     answer:
-      "A cerimónia inicia na Igreja do Bom Jesus, em Braga, às 11h da manhã. Após este momento, os noivos vão aproveitar o Bom Jesus, que é um lugar muito especial e bonito para tirar fotos. Nesse sentido, apenas iremos deslocar-nos para a quinta Colina do Romão por volta das 13h.",
+      "A cerimónia inicia na Igreja do Bom Jesus, em Braga, às 11h da manhã. Após este momento, os noivos vão aproveitar o Bom Jesus, que é um lugar muito especial e bonito para tirar fotos. Nesse sentido, apenas iremos deslocar-nos para a quinta Colina do Romão por volta das 14h.",
   },
 ];
 
