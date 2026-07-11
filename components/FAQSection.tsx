@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Existe algum dress code para o casamento?",
     answer:
-      "Não, não existe nenhum dress code específico mas quanto mais combinarem com as cores de Natal melhor ambiente conseguimos criar. Apenas é proibido vestir branco, porque é o dia mais especial da noiva e preto, pois o casamento é uma celebração com muita felicidade e apenas queremos cores que transmitam isso.",
+      "Não, não existe nenhum dress code específico mas quanto mais combinarem com as cores de Natal melhor ambiente conseguimos criar. Apenas é proibido vestir branco, porque é o dia mais especial da noiva e vestido preto, pois o casamento é uma celebração com muita felicidade e apenas queremos cores que transmitam isso.",
   },
   {
     question: "O casamento é adequado para crianças?",
